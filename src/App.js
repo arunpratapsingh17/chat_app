@@ -13,6 +13,7 @@ function App() {
     const fetchUser = async()=>{
       //Get authenticated user from Auth.
       const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
+      console.log(userInfo);
     //  console.log(userInfo);
       if(userInfo)
       {

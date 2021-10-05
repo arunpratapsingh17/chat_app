@@ -2,33 +2,40 @@ import React, { useEffect, useState } from 'react'
 import { listUsers } from '../graphql/queries'
 import { Nameholder } from '../Sidebarsubparts/Nameholder'
 import Search from '../Sidebarsubparts/Search';
-import {API,graphqlOperation} from "aws-amplify"
+import {API,graphqlOperation} from "aws-amplify";
+import Auth from '@aws-amplify/auth';
+import { getUser } from './query.js';
 import "./Sidebar.css"
+import { createChatRoom } from '../graphql/mutations';
+import ChatListItem from './ChatListItem';
 const Sidebar = () => {
-    const [users,setUsers] = useState([])
+    const [chatRooms,setChatRooms] = useState([]);  
     useEffect(()=>{
-        const fetchUsers = async ()=>{
-            try{
-                const userData = await API.graphql(
-                    graphqlOperation(
-                        listUsers
-                    )
-                );
-                setUsers(userData.data.listUsers.items)
-            }catch(e){
-                console.log(e);
-            }
+       const fetchChatRooms = async()=>{
+        try{
+            const userInfo = await Auth.currentAuthenticatedUser();
+            const userData = await API.graphql(
+                graphqlOperation(
+                    getUser,{
+                        id:userInfo.attributes.sub
+                    }
+                )
+            )
+            console.log(userData.data.getUser.chatRoomUser.items);
+            setChatRooms(userData.data.getUser.chatRoomUser.items)
+            console.log(chatRooms);
+        }catch(e){
+            console.log(e);
         }
-        fetchUsers();
+       }
+       fetchChatRooms();
     },[])
     return (
         <div className="Sidebar">
             <Search />
             <div className="MessagesList">
-                    {/* {console.log(users)} */}
-                    {users.map((user,index)=>{
-                        console.log(user);
-                        return <Nameholder user={user} />
+                    {chatRooms.map((chatRoom)=>{
+                        return <ChatListItem chatRoom={chatRoom} />
                     })}
             </div>
         </div>
