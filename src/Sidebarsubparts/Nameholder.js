@@ -1,13 +1,14 @@
 import React from 'react';
 import { Avatar } from '@material-ui/core';
 import "./Nameholder.css"
-export const Nameholder = () => {
+export const Nameholder = ({user}) => {
+    console.log("reached");
     return (
         <div className="Nameholder">
-            <Avatar />
+            <Avatar src={user.imageUri} />
             <div className="Username">
                 <h3>
-                    Arun Pratap Singh
+                    {user.name}
                 </h3>
                 <p>
                     kdmwed jnd ejdn 

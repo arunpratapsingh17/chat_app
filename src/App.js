@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import Mainbody from './components/Mainbody';
 import { withAuthenticator } from '@aws-amplify/ui-react'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Auth from '@aws-amplify/auth';
 import {getUser} from "./graphql/queries";
 import {createUser} from "./graphql/mutations";
@@ -13,7 +13,7 @@ function App() {
     const fetchUser = async()=>{
       //Get authenticated user from Auth.
       const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
-     console.log(userInfo);
+    //  console.log(userInfo);
       if(userInfo)
       {
         //Get the user from the backend with the user sub from authentication.
