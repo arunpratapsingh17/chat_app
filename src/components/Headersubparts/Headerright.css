@@ -1,0 +1,16 @@
+.Headerright{
+    flex-basis: 10%;
+    /* background-color: pink; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+}
+.Icon{
+    height: 50px;
+    font-size: large;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}

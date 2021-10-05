@@ -1,0 +1,11 @@
+.MessageAreaHeader{
+    flex-basis: 10%;
+    border-bottom:solid 2px #E8E8E8;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+.MenuPartHeader{
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,5 @@
+.Messagearea{
+    flex: 0.65;
+    display: flex;
+    flex-direction: column;
+}

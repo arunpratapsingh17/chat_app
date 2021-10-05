@@ -1,0 +1,16 @@
+.Headercentre{
+    flex-basis: 85%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Headercentre button{
+    all: unset;
+    color: white;
+    -webkit-text-fill-color: white;
+    cursor: pointer;
+    margin-left: 1%;
+    margin-right: 1%;
+    font-weight: 400;
+}

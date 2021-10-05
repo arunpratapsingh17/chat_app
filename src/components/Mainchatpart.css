@@ -1,0 +1,13 @@
+.Mainchatpart{
+    display: flex;
+    position: absolute;
+    background-color: white;
+    height: 200px;
+    width: 200px;
+    left: 20%;
+    right: 20%;
+    bottom: 0;
+    /* top: 3%; */
+    width: 800px;
+    height: 97%;
+}

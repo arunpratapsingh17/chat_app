@@ -1,0 +1,8 @@
+.MessageInputArea{
+    flex-basis: 10%;
+    background-color: brown;
+}
+.MessageInputArea input{
+    height: 100%;
+    width: 100%;
+}
