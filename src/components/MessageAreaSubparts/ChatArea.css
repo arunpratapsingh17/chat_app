@@ -1,3 +1,36 @@
 .ChatArea{
     flex-basis: 80%;
 }
+.chat_body {
+    flex: 1;
+    background-image: url("https://i.imgur.com/TnNwdvV.png");
+    background-repeat: repeat;
+    background-position: center;
+    padding: 30px;
+    overflow-y: scroll;
+    margin-bottom: 30px;
+  }
+  .chat_message {
+    position: relative;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    /* it will make the div take only those parts,which are taken by texts,not much space will be given to the div,jitna requirement hai utna hi */
+    width: fit-content;
+    margin-bottom: 20px;
+  }
+  .chat_name {
+    position: absolute;
+    top: -15px;
+    font-weight: 800;
+    font-size: xx-small;
+  }
+  .chat_timestamp {
+    margin-left: 10px;
+    font-size: xx-small;
+  }
+  .chat_reciever {
+    margin-left: auto;
+    background-color: #dcf8c6;
+  }

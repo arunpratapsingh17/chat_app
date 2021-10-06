@@ -5,6 +5,7 @@ import { graphqlOperation } from '@aws-amplify/api-graphql';
 import API from '@aws-amplify/api';
 import { listUsers } from '../../graphql/queries';
 import { Nameholder } from '../../Sidebarsubparts/Nameholder';
+import { Auth } from 'aws-amplify';
 const Headercentre = () => {
     const [isOpen,setIsopen] = useState(false);
     const [users,setUsers] = useState([]);
@@ -26,7 +27,9 @@ const Headercentre = () => {
     return (
         <div className="Headercentre">
             <button>Learning</button>
-            <button>Teaching</button>
+            <button onClick={async()=>{
+                await Auth.signOut()
+            }}>Teaching</button>
             <button onClick={()=>setIsopen(true)}>Teams</button>
             <Modal isOpen={isOpen} shouldCloseOnEsc={true} shouldCloseOnOverlayClick={true} ariaHideApp={false} onRequestClose={()=>setIsopen(false)} style={
             {

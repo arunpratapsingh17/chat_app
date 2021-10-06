@@ -21,9 +21,7 @@ const Sidebar = () => {
                     }
                 )
             )
-            console.log(userData.data.getUser.chatRoomUser.items);
-            setChatRooms(userData.data.getUser.chatRoomUser.items)
-            console.log(chatRooms);
+            setChatRooms(userData.data.getUser.chatRoomUser.items);
         }catch(e){
             console.log(e);
         }

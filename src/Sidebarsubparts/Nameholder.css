@@ -4,7 +4,10 @@
     flex-direction: row;
     padding: 2%;
     margin-bottom: 2%;
+    text-decoration: none;
+    color: inherit;
 }
+
 .Username{
     display: flex;
     flex-direction: column;
