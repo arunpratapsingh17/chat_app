@@ -27,7 +27,8 @@ const Sidebar = () => {
         }
        }
        fetchChatRooms();
-    },[])
+    },[]);
+    console.log(chatRooms);
     return (
         <div className="Sidebar">
             <Search />

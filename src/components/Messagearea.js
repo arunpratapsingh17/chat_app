@@ -8,6 +8,7 @@ import {createMessage} from "../graphql/mutations";
 import { useParams } from "react-router-dom";
 import { getChatRoom, getUser } from '../graphql/queries';
 import {AiOutlineMenu} from "react-icons/ai";
+import {onCreateMessage} from "../graphql/subscriptions"
 
 const Messagearea = () => {
     const {chatRoomId}= useParams();
@@ -15,14 +16,17 @@ const Messagearea = () => {
     const [otherPersonDetails,setOtherPersonDetails] = useState({})
     // console.log(useParams());
     // console.log(chatRoomId);
-    const [message,setMessage] = useState('');
+    const [message,setMessage] = useState([]);
     const [myUserId,setMyUserId] = useState(null);
     const [value,setValue] = useState("");
+    
 
 
 
     const handleSubmit=async (e)=>{
         e.preventDefault();
+        if(value=="")
+            return
         try{
             await API.graphql(
                 graphqlOperation(
@@ -84,16 +88,35 @@ const Messagearea = () => {
                                 }
                             )
                         )
-                        setOtherPersonDetails(otherUserData.data.getUser)
+                        setOtherPersonDetails(otherUserData.data.getUser);
                     }
                     getOtherUserData();
+                    // console.log("Chat room data");
+                    // console.log(chatRoomData);
+                    setMessage(chatRoomData.messages.items)
                 }
             })
         }
     },[chatRoomData]);
+    useEffect(()=>{
+        const subscription = API.graphql(
+            graphqlOperation(
+                onCreateMessage,
+            )
+        ).subscribe({
+            next:(data)=>{
+                console.log("update from backend");
+                console.log(data.value.data.onCreateMessage);
+                setMessage(message=>[...message,data.value.data.onCreateMessage])
+            }
+        })
+        return ()=>subscription.unsubscribe();
+    },[])
     // console.log("9 34");
-    // console.log(otherPersonDetails);
-    console.log(chatRoomData);
+    // // console.log(otherPersonDetails);
+    // console.log(chatRoomData);
+    // console.log("12 57");
+    // console.log(message);
     return (
         <div className="Messagearea">
             <div className="MessageAreaHeader">
@@ -101,17 +124,14 @@ const Messagearea = () => {
                  <h4>
                   {otherPersonDetails.name}
                  </h4>
-                 <p>
-                    Local Time
-                 </p>
                 </div>
-            <div className="MenuPartHeader">
-                <AiOutlineMenu />
-            </div>
+                <div className="MenuPartHeader">
+                    <AiOutlineMenu />
+                </div>
             </div>
             <div className="ChatArea">
                     <div className="chat_body">
-                        {chatRoomData?.messages?.items.map((message) => (
+                        {message?.map((message) => (
                         <p
                             className={`chat_message ${
                             message.userID === myUserId && "chat_reciever"
@@ -122,15 +142,15 @@ const Messagearea = () => {
                         {/* <span className="chat_timestamp">
                         {new Date(message.timestamp?.toDate()).toUTCString()}
                          </span> */}
-                    </p>
+                        </p>
                     ))}
-                </div>
+                    </div>
                 {/* <div>
                     {chatRoomData.messages.items.map((message)=>{
                         return <p>{message.content}</p>
                     })}
                 </div> */}
-             </div>
+            </div>
             <div className="MessageInputArea">
                 <form className="Form" onSubmit={(e)=>handleSubmit(e)}>
                     <input value={value} onChange={(e)=>setValue(e.target.value)}/>
