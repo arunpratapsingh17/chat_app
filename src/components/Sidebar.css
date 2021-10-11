@@ -4,6 +4,7 @@
     padding: 1%;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll; 
 }
 .MessagesList{
     margin-top: 10%;

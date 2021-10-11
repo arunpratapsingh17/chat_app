@@ -24,6 +24,8 @@ export const getUser = /* GraphQL */ `
                       }
                   }
               }
+              group
+              groupName
           }
           
         }

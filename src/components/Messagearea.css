@@ -17,9 +17,6 @@
 }
 .chat_body {
     flex-basis: 80%;
-    /* background-image: url("https://i.imgur.com/TnNwdvV.png");
-    background-repeat: repeat;
-    background-position: center; */
     padding: 30px;
     height: 100%;
   }

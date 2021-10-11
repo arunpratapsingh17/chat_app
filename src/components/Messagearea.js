@@ -6,7 +6,8 @@ import MessageInputArea from './MessageAreaSubparts/MessageInputArea';
 import {API,Auth,graphqlOperation} from "aws-amplify";
 import {createMessage} from "../graphql/mutations";
 import { useParams } from "react-router-dom";
-import { getChatRoom, getUser } from '../graphql/queries';
+import {  getUser } from '../graphql/queries';
+import { getChatRoom } from '../graphql/queries';
 import {AiOutlineMenu} from "react-icons/ai";
 import {onCreateMessage} from "../graphql/subscriptions"
 
@@ -19,6 +20,9 @@ const Messagearea = () => {
     const [message,setMessage] = useState([]);
     const [myUserId,setMyUserId] = useState(null);
     const [value,setValue] = useState("");
+    const [group,setGroup] = useState(false);
+    const [groupMembers,setGroupMembers] = useState([]);
+    var array=[];
     
 
 
@@ -46,6 +50,11 @@ const Messagearea = () => {
     }
 
     useEffect(()=>{
+        setGroup(false);
+        setGroupMembers([]);
+        setOtherPersonDetails({});
+        setChatRoomData({});
+        setMessage([])
         const fetchChatRooms=async()=>{
             try{
                 const chatRoomDetails=await API.graphql(
@@ -96,6 +105,20 @@ const Messagearea = () => {
                     setMessage(chatRoomData.messages.items)
                 }
             })
+            if(chatRoomData.group){
+                setGroup(true);
+                chatRoomData?.chatRoomUsers?.items.map(async(groupMember)=>{
+                         const otherUserData = await API.graphql(
+                            graphqlOperation(
+                                getUser,{
+                                    id:groupMember.userID
+                                }
+                            )
+                        )
+                        array.push(otherUserData.data.getUser)
+                })
+            }
+            setGroupMembers(array)
         }
     },[chatRoomData]);
     useEffect(()=>{
@@ -112,18 +135,24 @@ const Messagearea = () => {
         })
         return ()=>subscription.unsubscribe();
     },[])
-    // console.log("9 34");
+    console.log("9 34");
     // // console.log(otherPersonDetails);
-    // console.log(chatRoomData);
-    // console.log("12 57");
+    console.log(chatRoomData);
+
+    console.log("12 57");
+    console.log(groupMembers);
     // console.log(message);
     return (
         <div className="Messagearea">
             <div className="MessageAreaHeader">
                 <div>
-                 <h4>
-                  {otherPersonDetails.name}
-                 </h4>
+                {/* <h4> */}
+                  {/* {otherPersonDetails.name} */}
+                  
+                 {/* </h4> */}
+                 {group?(groupMembers.map((groupMember)=>{
+                     return <span style={{fontWeight:"bold"}}>{groupMember.name} </span>
+                 })):(<h4>{otherPersonDetails.name}</h4>)}
                 </div>
                 <div className="MenuPartHeader">
                     <AiOutlineMenu />
@@ -132,6 +161,7 @@ const Messagearea = () => {
             <div className="ChatArea">
                     <div className="chat_body">
                         {message?.map((message) => (
+                        console.log(message),
                         <p
                             className={`chat_message ${
                             message.userID === myUserId && "chat_reciever"

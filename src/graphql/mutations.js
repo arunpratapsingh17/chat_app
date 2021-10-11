@@ -37,6 +37,8 @@ export const createUser = /* GraphQL */ `
         }
         chatRoom {
           id
+          group
+          groupName
           createdAt
           updatedAt
         }
@@ -83,6 +85,8 @@ export const updateUser = /* GraphQL */ `
         }
         chatRoom {
           id
+          group
+          groupName
           createdAt
           updatedAt
         }
@@ -129,6 +133,8 @@ export const deleteUser = /* GraphQL */ `
         }
         chatRoom {
           id
+          group
+          groupName
           createdAt
           updatedAt
         }
@@ -169,6 +175,8 @@ export const createChatRoomUser = /* GraphQL */ `
       }
       chatRoom {
         id
+        group
+        groupName
         chatRoomUsers {
           nextToken
         }
@@ -213,6 +221,8 @@ export const updateChatRoomUser = /* GraphQL */ `
       }
       chatRoom {
         id
+        group
+        groupName
         chatRoomUsers {
           nextToken
         }
@@ -257,6 +267,8 @@ export const deleteChatRoomUser = /* GraphQL */ `
       }
       chatRoom {
         id
+        group
+        groupName
         chatRoomUsers {
           nextToken
         }
@@ -278,6 +290,8 @@ export const createChatRoom = /* GraphQL */ `
   ) {
     createChatRoom(input: $input, condition: $condition) {
       id
+      group
+      groupName
       chatRoomUsers {
         items {
           id
@@ -311,6 +325,8 @@ export const updateChatRoom = /* GraphQL */ `
   ) {
     updateChatRoom(input: $input, condition: $condition) {
       id
+      group
+      groupName
       chatRoomUsers {
         items {
           id
@@ -344,6 +360,8 @@ export const deleteChatRoom = /* GraphQL */ `
   ) {
     deleteChatRoom(input: $input, condition: $condition) {
       id
+      group
+      groupName
       chatRoomUsers {
         items {
           id
@@ -402,6 +420,8 @@ export const createMessage = /* GraphQL */ `
       }
       chatRoom {
         id
+        group
+        groupName
         chatRoomUsers {
           nextToken
         }
@@ -447,6 +467,8 @@ export const updateMessage = /* GraphQL */ `
       }
       chatRoom {
         id
+        group
+        groupName
         chatRoomUsers {
           nextToken
         }
@@ -492,6 +514,8 @@ export const deleteMessage = /* GraphQL */ `
       }
       chatRoom {
         id
+        group
+        groupName
         chatRoomUsers {
           nextToken
         }
