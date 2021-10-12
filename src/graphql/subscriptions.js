@@ -24,6 +24,8 @@ export const onCreateUser = /* GraphQL */ `
         content
         userID
         chatRoomID
+        awsLink
+        senderName
         user {
           id
           name
@@ -69,6 +71,8 @@ export const onUpdateUser = /* GraphQL */ `
         content
         userID
         chatRoomID
+        awsLink
+        senderName
         user {
           id
           name
@@ -114,6 +118,8 @@ export const onDeleteUser = /* GraphQL */ `
         content
         userID
         chatRoomID
+        awsLink
+        senderName
         user {
           id
           name
@@ -156,6 +162,8 @@ export const onCreateChatRoomUser = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -199,6 +207,8 @@ export const onUpdateChatRoomUser = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -242,6 +252,8 @@ export const onDeleteChatRoomUser = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -288,6 +300,8 @@ export const onCreateChatRoom = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         nextToken
@@ -320,6 +334,8 @@ export const onUpdateChatRoom = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         nextToken
@@ -352,6 +368,8 @@ export const onDeleteChatRoom = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         nextToken
@@ -369,6 +387,8 @@ export const onCreateMessage = /* GraphQL */ `
       content
       userID
       chatRoomID
+      awsLink
+      senderName
       user {
         id
         name
@@ -383,6 +403,8 @@ export const onCreateMessage = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -413,6 +435,8 @@ export const onUpdateMessage = /* GraphQL */ `
       content
       userID
       chatRoomID
+      awsLink
+      senderName
       user {
         id
         name
@@ -427,6 +451,8 @@ export const onUpdateMessage = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -457,6 +483,8 @@ export const onDeleteMessage = /* GraphQL */ `
       content
       userID
       chatRoomID
+      awsLink
+      senderName
       user {
         id
         name
@@ -471,6 +499,8 @@ export const onDeleteMessage = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -489,6 +519,54 @@ export const onDeleteMessage = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      updatedAt
+    }
+  }
+`;
+export const onCreatePicture = /* GraphQL */ `
+  subscription OnCreatePicture($owner: String!) {
+    onCreatePicture(owner: $owner) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePicture = /* GraphQL */ `
+  subscription OnUpdatePicture($owner: String!) {
+    onUpdatePicture(owner: $owner) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePicture = /* GraphQL */ `
+  subscription OnDeletePicture($owner: String!) {
+    onDeletePicture(owner: $owner) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      createdAt
       updatedAt
     }
   }

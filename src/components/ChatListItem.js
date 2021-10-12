@@ -11,7 +11,7 @@ const ChatListItem = ({chatRoom}) => {
     const [user,setUser] = useState({});
     const [group,setGroup] = useState(false)
     useEffect(()=>{
-        console.log(chatRoom);
+        // console.log(chatRoom);
         const userCheck=async ()=>{
             const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
             if(chatRoom.chatRoom.chatRoomUsers.items[0].user.name===userInfo.username){

@@ -27,6 +27,8 @@ export const createUser = /* GraphQL */ `
         content
         userID
         chatRoomID
+        awsLink
+        senderName
         user {
           id
           name
@@ -75,6 +77,8 @@ export const updateUser = /* GraphQL */ `
         content
         userID
         chatRoomID
+        awsLink
+        senderName
         user {
           id
           name
@@ -123,6 +127,8 @@ export const deleteUser = /* GraphQL */ `
         content
         userID
         chatRoomID
+        awsLink
+        senderName
         user {
           id
           name
@@ -168,6 +174,8 @@ export const createChatRoomUser = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -214,6 +222,8 @@ export const updateChatRoomUser = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -260,6 +270,8 @@ export const deleteChatRoomUser = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -309,6 +321,8 @@ export const createChatRoom = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         nextToken
@@ -344,6 +358,8 @@ export const updateChatRoom = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         nextToken
@@ -379,6 +395,8 @@ export const deleteChatRoom = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         nextToken
@@ -399,6 +417,8 @@ export const createMessage = /* GraphQL */ `
       content
       userID
       chatRoomID
+      awsLink
+      senderName
       user {
         id
         name
@@ -413,6 +433,8 @@ export const createMessage = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -446,6 +468,8 @@ export const updateMessage = /* GraphQL */ `
       content
       userID
       chatRoomID
+      awsLink
+      senderName
       user {
         id
         name
@@ -460,6 +484,8 @@ export const updateMessage = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -493,6 +519,8 @@ export const deleteMessage = /* GraphQL */ `
       content
       userID
       chatRoomID
+      awsLink
+      senderName
       user {
         id
         name
@@ -507,6 +535,8 @@ export const deleteMessage = /* GraphQL */ `
           content
           userID
           chatRoomID
+          awsLink
+          senderName
           updatedAt
         }
         createdAt
@@ -525,6 +555,63 @@ export const deleteMessage = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      updatedAt
+    }
+  }
+`;
+export const createPicture = /* GraphQL */ `
+  mutation CreatePicture(
+    $input: CreatePictureInput!
+    $condition: ModelPictureConditionInput
+  ) {
+    createPicture(input: $input, condition: $condition) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePicture = /* GraphQL */ `
+  mutation UpdatePicture(
+    $input: UpdatePictureInput!
+    $condition: ModelPictureConditionInput
+  ) {
+    updatePicture(input: $input, condition: $condition) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePicture = /* GraphQL */ `
+  mutation DeletePicture(
+    $input: DeletePictureInput!
+    $condition: ModelPictureConditionInput
+  ) {
+    deletePicture(input: $input, condition: $condition) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      createdAt
       updatedAt
     }
   }

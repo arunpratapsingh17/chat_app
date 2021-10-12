@@ -38,6 +38,23 @@ type Message
   content:String!
   userID: ID!
   chatRoomID: ID!
+  awsLink:Boolean
+  senderName:String
   user: User @connection(fields:["userID"])
   chatRoom: ChatRoom @connection(fields: ["chatRoomID"])
+}
+
+type S3Object{
+  bucket:String!
+  region:String!
+  key:String!
+}
+
+type Picture @model @auth(rules:[{allow:owner}]){
+  id:ID!
+  name:String
+  owner:String
+
+  #Reference the S3Object type from a field.
+  file:S3Object
 }
