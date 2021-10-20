@@ -19,7 +19,7 @@ export const Nameholder = ({user}) => {
             console.log(e);
         }
         const newChatRoom = newChatRoomData.data.createChatRoom;
-        console.log(newChatRoom);
+        // console.log(newChatRoom);
         //2. Add 'user' to that particular chatroom.
             await API.graphql(
                 graphqlOperation(

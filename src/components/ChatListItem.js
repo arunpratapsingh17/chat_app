@@ -13,15 +13,16 @@ const ChatListItem = ({chatRoom}) => {
     useEffect(()=>{
         // console.log(chatRoom);
         const userCheck=async ()=>{
-            const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
-            if(chatRoom.chatRoom.chatRoomUsers.items[0].user.name===userInfo.username){
-                setUser(chatRoom.chatRoom.chatRoomUsers.items[1]);
+            const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true})
+            // console.log(userInfo);
+            if(chatRoom?.chatRoom?.chatRoomUsers?.items[0]?.user?.id==userInfo?.attributes?.sub){
+                setUser(chatRoom?.chatRoom?.chatRoomUsers?.items[1]);
             }
             else{
-                setUser(chatRoom.chatRoom.chatRoomUsers.items[0]);
+                setUser(chatRoom?.chatRoom?.chatRoomUsers?.items[0]);
             }
         }
-        if(!chatRoom.chatRoom.group){
+        if(!chatRoom?.chatRoom?.group){
             userCheck();
         }
         else{
@@ -31,7 +32,7 @@ const ChatListItem = ({chatRoom}) => {
     // console.log(user.user.name);
     return (
         <Link
-        to={`/rooms/${chatRoom.chatRoomID}`}
+        to={`/rooms/${chatRoom?.chatRoomID}`}
         className="Nameholder" >
             
                 <Avatar src={chatRoom.imageUri} />

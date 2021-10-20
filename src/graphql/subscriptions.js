@@ -174,6 +174,13 @@ export const onCreateChatRoomUser = /* GraphQL */ `
         group
         groupName
         chatRoomUsers {
+          items {
+            id
+            userID
+            chatRoomID
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         messages {
@@ -219,6 +226,13 @@ export const onUpdateChatRoomUser = /* GraphQL */ `
         group
         groupName
         chatRoomUsers {
+          items {
+            id
+            userID
+            chatRoomID
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         messages {

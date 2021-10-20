@@ -59,19 +59,19 @@ const Messagearea = () => {
 
 
     const addImageToDB=async(image)=>{
-        console.log("Adding image to database");
-        console.log(image);
+        // console.log("Adding image to database");
+        // console.log(image);
         try{
            const fileData =  await API.graphql(
                 graphqlOperation(
                     createPicture,{input:image}
                 )
             )
-            console.log(fileData);
+            // console.log(fileData);
             try{
                 const resultFromStorage = await Storage.get(image.file.key);
-                console.log("This is what we are getting from the store");
-                console.log(resultFromStorage);
+                // console.log("This is what we are getting from the store");
+                // console.log(resultFromStorage);
                 setFileLink(resultFromStorage)
             }catch(e){
                 console.log(e);
@@ -85,12 +85,12 @@ const Messagearea = () => {
 
     const handleFileChange=(e)=>{
         const file = e.target.files[0];
-        console.log(file);
+        // console.log(file);
         Storage.put(file.name,file,{
             contentType:'file'
         }).then((result)=>{
             setFile({file:URL.createObjectURL(file)});
-            console.log(result);
+            // console.log(result);
             const image = {
                 name:file.name,
                 file:{
@@ -99,7 +99,7 @@ const Messagearea = () => {
                     key:result.key
                 }
             }
-            console.log(image);
+            // console.log(image);
             addImageToDB(image);
             setFile(null);
         })
@@ -133,7 +133,7 @@ const Messagearea = () => {
     useEffect(()=>{
         const fetchUser = async()=>{
             const UserInfo = await Auth.currentAuthenticatedUser();
-            console.log(UserInfo);
+            // console.log(UserInfo);
             setMyUsername(UserInfo.username)
             setMyUserId(UserInfo.attributes.sub);
         }
@@ -186,8 +186,8 @@ const Messagearea = () => {
             )
         ).subscribe({
             next:(data)=>{
-                console.log("update from backend");
-                console.log(data.value.data.onCreateMessage);
+                // console.log("update from backend");
+                // console.log(data.value.data.onCreateMessage);
                 setMessage(message=>[...message,data.value.data.onCreateMessage])
             }
         })
@@ -201,7 +201,7 @@ const Messagearea = () => {
         }
        const handleMessageCreationAfterStorageFetch = async()=>{
         try{
-            console.log(fileLink);
+            // console.log(fileLink);
             await API.graphql(
                 graphqlOperation(
                     createMessage,{
@@ -222,11 +222,11 @@ const Messagearea = () => {
        handleMessageCreationAfterStorageFetch()
     },[fileLink])
 
-    console.log("9 34");
+    // console.log("9 34");
     // // console.log(otherPersonDetails);
     // console.log(chatRoomData);
 
-    console.log("12 57");
+    // console.log("12 57");
     // console.log(groupMembers);
     // console.log(message);
     return (
@@ -249,7 +249,7 @@ const Messagearea = () => {
                     <div className="chat_body">
                         {message?.map((message) => 
                         {
-                            console.log(message);
+                            // console.log(message);
                         if(message?.awsLink){
                             return <div
                             className={`chat_message ${

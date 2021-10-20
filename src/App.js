@@ -13,14 +13,14 @@ function App() {
     const fetchUser = async()=>{
       //Get authenticated user from Auth.
       const userInfo = await Auth.currentAuthenticatedUser({bypassCache:true});
-      console.log(userInfo);
+      // console.log(userInfo);
     //  console.log(userInfo);
       if(userInfo)
       {
         //Get the user from the backend with the user sub from authentication.
         const userData = await API.graphql(graphqlOperation(getUser,{id:userInfo.attributes.sub}));
         if(userData.data.getUser){
-          console.log("User is already registered in the database");
+          // console.log("User is already registered in the database");
           return;
         }
         //If there is no user in the database with that id then create one,
