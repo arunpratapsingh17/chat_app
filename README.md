@@ -1,3 +1,11 @@
+All graphql operations on dynamodb files are in src->graphql.
+
+Schema  in amplify->backend->api->chatapp->schema.graphql
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
